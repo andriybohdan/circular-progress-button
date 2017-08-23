@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="css/component.css" />
+</head>
+<body>
+
+  <form action="ajax-action.php" method="post" accept-charset="utf-8" class="ajax-form">
+
+    <div>
+      <input type="text" name="name" placeholder="Your Name">
+    </div>
+
+    
+    <div class="progress-button elastic" id="button">
+      <button type="submit"><span>Submit</span></button>
+      <svg class="progress-circle" width="70" height="70"><path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/></svg>
+      <svg class="checkmark" width="70" height="70"><path d="m31.5,46.5l15.3,-23.2"/><path d="m31.5,46.5l-8.5,-7.1"/></svg>
+      <svg class="cross" width="70" height="70"><path d="m35,35l-9.3,-9.3"/><path d="m35,35l9.3,9.3"/><path d="m35,35l-9.3,9.3"/><path d="m35,35l9.3,-9.3"/></svg>
+    </div><!-- /progress-button -->
+
+
+  </form>
+
+  <form action="ajax-action-error.php" method="post" accept-charset="utf-8" class="ajax-form">
+    
+    <div class="progress-button elastic" id="button">
+      <button type="submit"><span>failure sample</span></button>
+      <svg class="progress-circle" width="70" height="70"><path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/></svg>
+      <svg class="checkmark" width="70" height="70"><path d="m31.5,46.5l15.3,-23.2"/><path d="m31.5,46.5l-8.5,-7.1"/></svg>
+      <svg class="cross" width="70" height="70"><path d="m35,35l-9.3,-9.3"/><path d="m35,35l9.3,9.3"/><path d="m35,35l-9.3,9.3"/><path d="m35,35l9.3,-9.3"/></svg>
+    </div><!-- /progress-button -->
+
+
+  </form>
+
+  
+  <script src="js/modernizr.custom.js"></script>
+  <script src="js/classie.js"></script>
+  <script src="js/uiProgressButton.js"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/jquery.form.min.js"></script>
+  <script src="js/jquery.ajaxProgressForm.js"></script>
+
+  <script>
+
+    // Options are the same as for ajaxForm http://malsup.com/jquery/form/#options-object
+    $('.ajax-form').ajaxProgressForm({
+      success: function(responseText, statusText, xhr, $form)  {
+        // process result here
+        if (typeof(responseText.result)!='undefined' && responseText.result == 'OK') {
+          alert(responseText.message);
+        }
+      }
+    })
+    
+  </script>
+
+
+</body>
