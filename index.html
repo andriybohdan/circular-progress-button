@@ -49,10 +49,11 @@
 
     // Options are the same as for ajaxForm http://malsup.com/jquery/form/#options-object
     $('.ajax-form').ajaxProgressForm({
+      progressEstimate: 1, // Affects speed of progress change. Time in seconds for progress to reach 100%
       success: function(responseText, statusText, xhr, $form)  {
-        // process result here
+        // handle ajax response here
         if (typeof(responseText.result)!='undefined' && responseText.result == 'OK') {
-          alert(responseText.message);
+          setTimeout(function() { alert(responseText.message); },700);
         }
       }
     })

@@ -8,17 +8,20 @@
       var beforeSubmit = typeof(options.beforeSubmit)!='undefined' ? options.beforeSubmit : null;
       var success = typeof(options.success)!='undefined' ? options.success : null;
       var error = typeof(options.error)!='undefined' ? options.error : null;
+      var progressEstimate = typeof(options.progressEstimate)!='undefined' && options.progressEstimate > 0 ? options.progressEstimate : 1;
       var $progressButton = $elem.find('.progress-button');
       
       var uiProgressButton = new UIProgressButton( $progressButton[0], { callback: function(instance) { } })
       $progressButton.data('ui-progress-button',uiProgressButton);
 
+      var progressStep = 1.0 / (progressEstimate * 1000.0 / 100.0);
+      console.log()
       var startLoading = function() {
         var progress = 0;
         var interval = setInterval( function() {
-            progress = Math.min( progress + Math.random() * 0.1, 1 );
+            progress = Math.min( progress + progressStep, 1 );
             uiProgressButton.setProgress(progress);
-          }, 150 );
+          }, 100 );
         $progressButton.data('progress-interval',interval);
       }
 
