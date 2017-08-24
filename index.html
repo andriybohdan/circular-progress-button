@@ -52,7 +52,7 @@
     // Options are the same as for ajaxForm http://malsup.com/jquery/form/#options-object
     $('.ajax-form').ajaxProgressForm({
       progressEstimate: 5, // Affects speed of progress change. Time in seconds for progress to reach 100%
-      closeAnimation: 0.1,
+      closeAnimation: 0.1, // how fast to close the circle when response is received
       slowdownAfter: 3/4, // slow down after passing 3/4 of circle
       slowdownSeconds: 10, // duration during which circle reaches the end
       timeoutSeconds: 3.75 + 8, // fail if not received response within seconds
@@ -61,6 +61,9 @@
         if (typeof(responseText.result)!='undefined' && responseText.result == 'OK') {
           $form.find('h3').text(responseText.message); 
         }
+      },
+      error(xhr, statusText, errMessage, $form) {
+        console.log("fail", errMessage);
       }
     })
     
