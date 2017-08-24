@@ -1,7 +1,7 @@
 <?php
 
 
-sleep(1);
+sleep(15);
 
 // header("HTTP/1.0 500 Internal Server Error");
 

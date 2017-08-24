@@ -14,6 +14,8 @@
       <input type="text" name="name" placeholder="Your Name">
     </div>
 
+    <h3>-</h3>
+
     
     <div class="progress-button elastic" id="button">
       <button type="submit"><span>Submit</span></button>
@@ -49,11 +51,15 @@
 
     // Options are the same as for ajaxForm http://malsup.com/jquery/form/#options-object
     $('.ajax-form').ajaxProgressForm({
-      progressEstimate: 1.5, // Affects speed of progress change. Time in seconds for progress to reach 100%
+      progressEstimate: 5, // Affects speed of progress change. Time in seconds for progress to reach 100%
+      closeAnimation: 0.1,
+      slowdownAfter: 3/4, // slow down after passing 3/4 of circle
+      slowdownSeconds: 10, // duration during which circle reaches the end
+      timeoutSeconds: 3.75 + 8, // fail if not received response within seconds
       success: function(responseText, statusText, xhr, $form)  {
         // handle ajax response here
         if (typeof(responseText.result)!='undefined' && responseText.result == 'OK') {
-          setTimeout(function() { alert(responseText.message); },700);
+          $form.find('h3').text(responseText.message); 
         }
       }
     })
